@@ -1,0 +1,18 @@
+[Unit]
+Description=[**Add service name here**]
+Requires=postgresql.service
+After=network.target postgresql.service
+
+[Service]
+Type=simple
+SyslogIdentifier=odoo
+PermissionsStartOnly=true
+User=[**Add User Here**]
+Group=[**Add Group Here**]
+Restart=always
+RestartSec=3
+ExecStart=/opt/[**project folder**]/framework-venv/bin/python3 /opt/[**project folder**]/framework/odoo-bin -c /etc/[**config file**].conf
+StandardOutput=journal+console
+
+[Install]
+WantedBy=multi-user.target
